@@ -87,7 +87,7 @@ window.addEventListener('load', function() {
 
             /* finish connection with pavlovia.org */
             var pavlovia_finish = {
-              type: "pavlovia",
+              type: pavlovia,
               command: "finish"
             };
             timeline.push(pavlovia_finish);
@@ -102,7 +102,7 @@ window.addEventListener('load', function() {
 
     /* init connection with pavlovia.org */
     var pavlovia_init = {
-      type: "pavlovia",
+      type: pavlovia,
       command: "init"
     };
     timeline.push(pavlovia_init);
