@@ -23,14 +23,35 @@ window.addEventListener('load', function() {
             const currentColor = this.style.backgroundColor;
             if (currentColor === 'white') {
               this.style.backgroundColor = 'black';
+              trialData[row][col] = 1; // Update the trial data to reflect the change
             } else {
               this.style.backgroundColor = 'white';
+              trialData[row][col] = 0; // Update the trial data to reflect the change
             }
           });
           gridContainer.appendChild(cell);
         }
       }
       return gridContainer;
+    }
+  
+    // Function to reattach event listeners
+    function reattachListeners(trialData) {
+      const cells = document.querySelectorAll('.grid-cell');
+      cells.forEach(cell => {
+        cell.addEventListener('click', function() {
+          const row = parseInt(cell.dataset.row);
+          const col = parseInt(cell.dataset.col);
+          const currentColor = cell.style.backgroundColor;
+          if (currentColor === 'white') {
+            cell.style.backgroundColor = 'black';
+            trialData[row][col] = 1; // Update the trial data to reflect the change
+          } else {
+            cell.style.backgroundColor = 'white';
+            trialData[row][col] = 0; // Update the trial data to reflect the change
+          }
+        });
+      });
     }
   
     // Function to create a trial
@@ -41,6 +62,9 @@ window.addEventListener('load', function() {
         type: jsPsychHtmlButtonResponse,
         stimulus: grid.outerHTML,
         choices: ['Continue'],
+        on_load: function() {
+          reattachListeners(trialData);
+        },
         on_finish: function(data) {
           trialIndex++;
           if (trialIndex < numTrials) {
@@ -84,4 +108,3 @@ window.addEventListener('load', function() {
       jsPsych.run(timeline);
     });
   });
-  
