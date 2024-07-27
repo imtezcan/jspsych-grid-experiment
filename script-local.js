@@ -85,27 +85,28 @@ window.addEventListener('load', function() {
               timeline.push(createTrial(trialData));
             });
 
-            /* finish connection with pavlovia.org */
-            var pavlovia_finish = {
-              type: "pavlovia",
-              command: "finish"
-            };
-            timeline.push(pavlovia_finish);
-
             jsPsych.run(timeline);
   
           }
         });
       }
   
-    const jsPsych = initJsPsych();
-
-    /* init connection with pavlovia.org */
-    var pavlovia_init = {
-      type: "pavlovia",
-      command: "init"
-    };
-    timeline.push(pavlovia_init);
+    // const jsPsych = initJsPsych();
+    const jsPsych = initJsPsych({
+      on_finish: function() {
+        // Download the data at the end of the experiment
+        const csvData = jsPsych.data.get().csv();
+        const blob = new Blob([csvData], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = 'experiment_data.csv';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+      }
+    });
 
     var instructions = {
         type: jsPsychInstructions,
