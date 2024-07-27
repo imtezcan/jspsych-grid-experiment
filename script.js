@@ -76,6 +76,7 @@ window.addEventListener('load', function() {
           download: true,
           header: true,
           dynamicTyping: true,
+          skipEmptyLine: true,
           complete: function(results) {
             const data = results.data;
             const trials = data.map(row => JSON.parse(row.grid));
@@ -84,17 +85,31 @@ window.addEventListener('load', function() {
               timeline.push(createTrial(trialData));
             });
 
+            /* finish connection with pavlovia.org */
+            var pavlovia_finish = {
+              type: "pavlovia",
+              command: "finish"
+            };
+            timeline.push(pavlovia_finish);
+
             jsPsych.run(timeline);
   
           }
         });
       }
   
-    const jsPsych = initJsPsych({
+    jsPsych.init({
       on_finish: function() {
         jsPsych.data.displayData();
       }
     });
+
+    /* init connection with pavlovia.org */
+    var pavlovia_init = {
+      type: "pavlovia",
+      command: "init"
+    };
+    timeline.push(pavlovia_init);
 
     var instructions = {
         type: jsPsychInstructions,
