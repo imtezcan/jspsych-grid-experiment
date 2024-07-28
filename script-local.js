@@ -94,7 +94,7 @@ window.addEventListener('load', function() {
     // const jsPsych = initJsPsych();
     const jsPsych = initJsPsych({
       on_finish: function() {
-        // Download the data at the end of the experiment
+        // Download the data at the end of the experiment - should be removed
         const csvData = jsPsych.data.get().csv();
         const blob = new Blob([csvData], { type: 'text/csv' });
         const url = URL.createObjectURL(blob);
@@ -105,6 +105,8 @@ window.addEventListener('load', function() {
         document.body.appendChild(a);
         a.click();
         window.URL.revokeObjectURL(url);
+        // Show data - we should remove this as well
+        jsPsych.data.displayData();
       }
     });
 
