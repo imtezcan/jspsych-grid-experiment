@@ -110,6 +110,7 @@ window.addEventListener('load', function() {
       }
     });
 
+    // Add instructions block
     var instructions = {
         type: jsPsychInstructions,
         pages: [
@@ -126,5 +127,6 @@ window.addEventListener('load', function() {
     }
     timeline.push(instructions);
   
+    // Add trial blocks based on csv file and start experiment
     setupAndRunExperiment('conditions.csv', timeline);
   });
