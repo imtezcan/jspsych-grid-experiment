@@ -232,7 +232,7 @@ var jsPsychPavlovia = (function(jspsych) {
 					// get and save the incomplete results if need be:
 					if (_config.experiment.saveIncompleteResults)
 					{
-						const data = jsPsych.data.get().csv();
+						const data = this.jsPsych.data.get().csv();
 						_save(trial, data, true);
 					}
 
@@ -265,7 +265,7 @@ var jsPsychPavlovia = (function(jspsych) {
 
 			// tell the participant that the data is being uploaded:
 			const msg = "Please wait a moment while the data are uploaded to the pavlovia.org server...";
-			const displayElement = jsPsych.getDisplayElement();
+			const displayElement = this.jsPsych.getDisplayElement();
 			displayElement.innerHTML = '<pre id="pavlovia-data-upload"></pre>';
 			document.getElementById('pavlovia-data-upload').textContent = msg;
 
