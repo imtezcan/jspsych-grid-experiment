@@ -143,7 +143,7 @@ var jsPsychPavlovia = (function(jspsych) {
 					break;
 
 				case 'finish':
-					const data = jsPsych.data.get().csv();
+					const data = trial.jsPsych.data.get().csv();
 					await _finish(trial, data);
 					break;
 
