@@ -110,7 +110,7 @@ window.addEventListener('load', function() {
     var instructions = {
         type: jsPsychInstructions,
         pages: [
-        'Welcome to the experiment. Click next to begin.',
+        'Welcome to the experiment. Click next to see instructions.',
         'You will see a grid in the center of the screen: ' +
         '<br>' + 
         '<img src="grid1.png" width="150"></img>',
