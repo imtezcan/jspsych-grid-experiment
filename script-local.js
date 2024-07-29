@@ -1,13 +1,13 @@
 window.addEventListener('load', function() {
     const timeline = [];
-  
+
     // Function to create the grid html elements from grid data
     function createGridHTML(trialData) {
       const gridSize = trialData.length;
       const gridContainer = document.createElement('div');
       gridContainer.classList.add('grid-container');
       gridContainer.style.gridTemplateColumns = `repeat(${gridSize}, 50px)`; // Set the grid template columns dynamically
-  
+
       for (let row = 0; row < trialData.length; row++) {
         for (let col = 0; col < trialData[0].length; col++) {
           const cell = document.createElement('div');
@@ -20,7 +20,7 @@ window.addEventListener('load', function() {
       }
       return gridContainer;
     }
-  
+
     // Attach mouse event listeners to grid cells that toggle the cell color
     function attachListeners(trialData) {
       const cells = document.querySelectorAll('.grid-cell');
@@ -39,12 +39,12 @@ window.addEventListener('load', function() {
         });
       });
     }
-  
+
     // Create a single trial object from single row of grid data
     function createTrial(trialData) {
       const gridHTML = createGridHTML(trialData);
       const originalTrialData = trialData.map(row => [...row]); // Copy 2D array to retain original grid
-  
+
       return {
         type: jsPsychHtmlButtonResponse,
         stimulus: gridHTML.outerHTML,
@@ -80,17 +80,30 @@ window.addEventListener('load', function() {
           complete: function(results) {
             const data = results.data;
             const trials = data.map(row => JSON.parse(row.grid));
-            
+
+
+            // Shuffle the trials to randomize the order
+            shuffleArray(trials);
+
             trials.forEach(trialData => {
               timeline.push(createTrial(trialData));
             });
 
             jsPsych.run(timeline);
-  
+
           }
         });
       }
-  
+
+
+  // Utility function to shuffle an array
+  function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+  }
+}
+
     // const jsPsych = initJsPsych();
     const jsPsych = initJsPsych({
       on_finish: function() {
@@ -116,7 +129,7 @@ window.addEventListener('load', function() {
         pages: [
         'Welcome to the experiment. Click next to begin.',
         'You will see a grid in the center of the screen: ' +
-        '<br>' + 
+        '<br>' +
         '<img src="grid1.png" width="150"></img>',
         'Click on the cells to add or subtract to the shape in the grid. Your goal is to make the shape symmetric.' +
         '<br>' +
@@ -126,7 +139,7 @@ window.addEventListener('load', function() {
         show_clickable_nav: true
     }
     timeline.push(instructions);
-  
+
     // Add trial blocks based on csv file and start experiment
-    setupAndRunExperiment('conditions.csv', timeline);
+    setupAndRunExperiment('conditions_exp.csv', timeline);
   });
