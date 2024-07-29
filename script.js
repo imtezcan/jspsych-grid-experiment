@@ -80,6 +80,9 @@ window.addEventListener('load', function() {
           complete: function(results) {
             const data = results.data;
             const trials = data.map(row => JSON.parse(row.grid));
+
+            // Shuffle the trials to randomize the order
+            shuffleArray(trials);
             
             trials.forEach(trialData => {
               timeline.push(createTrial(trialData));
@@ -97,6 +100,15 @@ window.addEventListener('load', function() {
           }
         });
       }
+
+
+  // Utility function to shuffle an array
+  function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+  }
+}
   
     const jsPsych = initJsPsych();
 
