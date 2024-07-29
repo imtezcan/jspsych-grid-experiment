@@ -14,7 +14,7 @@ window.addEventListener('load', function() {
           cell.classList.add('grid-cell');
           cell.dataset.row = row;
           cell.dataset.col = col;
-          cell.style.backgroundColor = trialData[row][col] === 1 ? 'black' : 'white';
+          cell.style.backgroundColor = trialData[row][col] === 1 ? 'ForestGreen' : 'white';
           gridContainer.appendChild(cell);
         }
       }
@@ -30,7 +30,7 @@ window.addEventListener('load', function() {
           const col = parseInt(cell.dataset.col);
           const currentColor = cell.style.backgroundColor;
           if (currentColor === 'white') {
-            cell.style.backgroundColor = 'black';
+            cell.style.backgroundColor = 'ForestGreen';
             trialData[row][col] = 1;
           } else {
             cell.style.backgroundColor = 'white';
