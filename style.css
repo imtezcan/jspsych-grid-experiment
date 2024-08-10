@@ -1,0 +1,61 @@
+.grid-cell {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    border: 1px solid black;
+    box-sizing: border-box;
+  }
+  .grid-container {
+    display: grid;
+  }
+
+  .instructions-page {
+    font-size: 24px; 
+    font-weight: bold;
+  }
+  .instructions-page h1 {
+    font-size: 40px; 
+    font-weight: bold;
+  }
+  .instructions-page h2 {
+    font-size: 20px; 
+    font-weight: bold;
+  }
+  .centered-text {
+    text-align: center;
+  }
+  .left-aligned-text {
+    text-align: left; 
+  }
+  .image-container {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 10px; 
+  }
+  form {
+    margin-top: 5px; 
+  }
+  form label {
+    display: block;
+    margin-bottom: 5px; 
+  }
+  form input, form textarea {
+    margin-bottom: 10px;
+    width: 90%; 
+    padding: 8px;
+    font-size: 14px; 
+  }
+  .image-container img {
+    max-width: 100%;
+    height: auto;
+  }
+  .second-page {
+    background-size: cover; 
+    background-position: center; 
+    color: #000; 
+  }
+  .two-columns {
+    display: flex;
+    justify-content: space-between;
+  }
