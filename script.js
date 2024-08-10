@@ -137,6 +137,25 @@ const jsPsych = initJsPsych({
   }
 });
 
+// Consent check function
+const check_consent = function() {
+  if (document.getElementById('consent_checkbox').checked) {
+    return true;
+  } else {
+    alert("If you wish to participate, you must check the box next to the statement 'I agree to participate in this experiment.'");
+    return false;
+  }
+};
+
+// Add consent form trial
+const consentTrial = {
+  type: jsPsychExternalHtml,
+  url: "Consent_form_2024_v2.html",
+  cont_btn: "Next",
+  check_fn: check_consent
+};
+timeline.push(consentTrial);
+
 // Instructions block
 const instructions = {
   type: jsPsychInstructions,
@@ -158,25 +177,6 @@ const instructions = {
   show_clickable_nav: true
 };
 timeline.push(instructions);
-
-// Sample consent check function
-const check_consent = function() {
-  if (document.getElementById('consent_checkbox').checked) {
-    return true;
-  } else {
-    alert("If you wish to participate, you must check the box next to the statement 'I agree to participate in this experiment.'");
-    return false;
-  }
-};
-
-// Add consent form trial
-const consentTrial = {
-  type: jsPsychExternalHtml,
-  url: "Consent_form_2024_v2.html",
-  cont_btn: "Next",
-  check_fn: check_consent
-};
-timeline.unshift(consentTrial); // Ensure consent form appears before the rest of the experiment
 
 // Start the experiment
 setupAndRunExperiment('conditions_exp.csv');

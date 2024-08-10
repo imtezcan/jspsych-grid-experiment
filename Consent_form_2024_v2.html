@@ -1,129 +1,113 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Grid Experiment</title>
-  <script src="https://unpkg.com/jspsych@8.0.0"></script>
-  <link href="https://unpkg.com/jspsych@8.0.0/css/jspsych.css" rel="stylesheet" type="text/css" />
-  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.0.0"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-html-button-response@2.0.0"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-instructions@2.0.0"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-survey-text@2.0.0"></script>
-  <script src="papaparse.min.js"></script>
-  <link href="style-local.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-  <script src="script-local.js"></script>
-</body>
-</html>
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
+<html>
+    <head>
+        <style>
+            html, body {
+                height: 100%;
+                margin: 0;
+                font-family: Arial, sans-serif;
+            }
 
-        body {
-            background: linear-gradient(to bottom, #f5f5dc, #e8e2d6, #d0c6a8, #bda59e, #a89f91, #8e8e8e);
-            background-image: url('Background_creme.png');
-            color: #333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+            body {
+                background: linear-gradient(to bottom, #f5f5dc, #e8e2d6, #d0c6a8, #bda59e, #a89f91, #8e8e8e);
+                background-image: url('Background_creme.png');
+                color: #333;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
 
-        .consent-form {
-            max-width: 800px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            line-height: 1.6;
-            text-align: left;
-            overflow-y: auto;
-            max-height: 90vh;
-            width: 100%;
-        }
+            .consent-form {
+                max-width: 800px;
+                padding: 20px;
+                background-color: #fff;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                line-height: 1.6;
+                text-align: left;
+                overflow-y: auto;
+                max-height: 90vh;
+                width: 100%;
+            }
 
-        h1, h2 {
-            text-align: center;
-            color: #000;
-        }
+            h1, h2 {
+                text-align: center;
+                color: #000;
+            }
 
-        h1 {
-            font-size: 15px;
-        }
+            h1 {
+                font-size: 15px;
+            }
 
-        h2 {
-            font-size: 15px;
-        }
+            h2 {
+                font-size: 15px;
+            }
 
-        p, label {
-            font-size: 15px;
-            margin: 10px 0;
-            text-align: justify;
-        }
+            p, label {
+                font-size: 15px;
+                margin: 10px 0;
+                text-align: justify;
+            }
 
-        .consent-form p {
-            margin-bottom: 20px;
-        }
+            .consent-form p {
+                margin-bottom: 20px;
+            }
 
-        .consent-form label {
-            display: block;
-            margin-bottom: 10px;
-        }
+            .consent-form label {
+                display: block;
+                margin-bottom: 10px;
+            }
 
-        .consent-form input[type="checkbox"] {
-            margin-right: 10px;
-        }
+            .consent-form input[type="checkbox"] {
+                margin-right: 10px;
+            }
 
-        .consent-form button {
-            padding: 5px 10px;
-            background-color: transparent;
-            color: #4CAF50;
-            border: 2px solid #4CAF50;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-        }
+            .consent-form button {
+                padding: 5px 10px;
+                background-color: transparent;
+                color: #4CAF50;
+                border: 2px solid #4CAF50;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 14px;
+            }
 
-        .consent-form button:hover {
-            background-color: #4CAF50;
-            color: white;
-        }
+            .consent-form button:hover {
+                background-color: #4CAF50;
+                color: white;
+            }
 
-        .consent-form #Next {
-            background-color: #9e9e9e;
-            color: white;
-        }
+            .consent-form #Next {
+                background-color: #9e9e9e;
+                color: white;
+            }
 
-        .consent-form #Next:hover {
-            background-color: #757575;
-        }
+            .consent-form #Next:hover {
+                background-color: #757575;
+            }
 
-        ol {
-            padding-left: 20px;
-        }
+            ol {
+                padding-left: 20px;
+            }
 
-        ol li {
-            margin-bottom: 10px;
-        }
+            ol li {
+                margin-bottom: 10px;
+            }
 
-        ol li::marker {
-            font-weight: bold;
-            font-size: 18px;
-        }
-        
-        .centered-image {
-            display: block;
-            margin: 0 auto 20px auto;
-            max-width: 100%;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-        }
-    </style>
-</head>
+            ol li::marker {
+                font-weight: bold;
+                font-size: 18px;
+            }
+            
+            .centered-image {
+                display: block;
+                margin: 0 auto 20px auto;
+                max-width: 100%;
+                height: auto;
+                border-radius: 15px;
+                box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            }
+        </style>
+    </head>
 <body>
 
 <div class="consent-form">
@@ -191,19 +175,5 @@
     </p>
     <button type="button" id="Next">Next</button>
 </div>
-
-<script>
-    document.getElementById('Next').addEventListener('click', function() {
-        if (document.getElementById('check_consent').checked) {
-            jsPsych.data.addProperties({consent_given: true});
-            jsPsych.pluginAPI.setTimeout(function() {
-                jsPsych.finishTrial();
-            }, 100);
-        } else {
-            alert('Please agree to the consent form before proceeding.');
-        }
-    });
-</script>
-
 </body>
 </html>
