@@ -84,10 +84,12 @@ function setupAndRunExperiment(file) {
       // Shuffle the trials to randomize the order
       shuffleArray(trials);
       
+      // Add trials
       trials.forEach(trialData => {
         timeline.push(createTrial(trialData));
       });
       
+      // Add survey questions
       const survey = {
         type: jsPsychSurveyText,
         preamble: "Please answer the questions below",
@@ -98,6 +100,7 @@ function setupAndRunExperiment(file) {
       };
       timeline.push(survey);
 
+      // Add debrief block (end page)
       const debrief_block = {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: 'Thank you for participating in the experiment!',
@@ -147,7 +150,7 @@ const check_consent = function() {
   }
 };
 
-// Add consent form trial
+// Add consent block
 const consentTrial = {
   type: jsPsychExternalHtml,
   url: "Consent_form_2024_v2.html",
@@ -156,23 +159,20 @@ const consentTrial = {
 };
 timeline.push(consentTrial);
 
-// Instructions block
+// Add instructions block
 const instructions = {
   type: jsPsychInstructions,
   pages: [
-    '<div class="centered-text">' +
     '<img src="Figure_22.png" width="200"></img>' + 
     '<h1 class="instructions-page">Grid Symmetry Experiment</h1>' +
     'Welcome to the experiment!<br>' +
     'Please click the next button for the instructions.',
 
-    '<div class="centered-text">' +
-    'You will see a grid in the center of the screen: <br><img src="grid1.png" width="150"></img>' +
-    '<div class="centered-text">' +
+    'You will see a grid in the center of the screen: ' +
+    '<br><img src="grid1.png" width="150"></img><br>' +
     'Click on the cells to add or subtract to the shape in the grid. Your goal is to make the shape symmetric.' +
-    '<br><img src="grid2.png" width="150"></img>' +
-    '<br>' +
-    'Click next to begin the experiment.</div>'
+    '<br><img src="grid2.png" width="150"></img><br>' +
+    'Click next to begin the experiment.'
   ],
   show_clickable_nav: true
 };
